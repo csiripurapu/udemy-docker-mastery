@@ -1,4 +1,7 @@
+# version isn't needed as of 2020 for docker compose CLI. 
+# All 2.x and 3.x features supported
 # version: '2'
+# NOTE: move this answer file up a directory so it'll work
 
 services:
 
@@ -13,12 +16,15 @@ services:
       - drupal-sites:/var/www/html/sites      
       - drupal-themes:/var/www/html/themes
  
-  postgres:
-    image: postgres:14
+  mariadb:
+    image: mariadb:latest
     environment:
-      - POSTGRES_PASSWORD=mypasswd
+      - MARIADB_ROOT_PASSWORD=mypasswd
+      - MARIADB_DATABASE=mydb
+      - MARIADB_USER=mydbuser
+      - MARIADB_PASSWORD=passwd
     volumes:
-      - drupal-data:/var/lib/postgresql/data
+      - drupal-data:/var/lib/mariadb/data
 
 volumes:
   drupal-data:

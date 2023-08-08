@@ -1,9 +1,11 @@
 # create your custom drupal image here, based of official drupal
 
+FROM drupal:9
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+    git
+    #&& rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/html/themes
 
